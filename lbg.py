@@ -21,6 +21,7 @@ import mimetypes
 mimetypes.add_type('text/javascript', '.js')
 
 # set up the app with listening socket for http requests and appropriate hostname
+print('SETTING UP LISTENER ON PORT 8080')
 parser = argparse.ArgumentParser()
 parser.add_argument("--PORT", default="8080")
 args = parser.parse_args()
@@ -55,6 +56,7 @@ def item_builder(item_name: str, item_description: str, item_price: float, item_
     # returns that item object
     return item
 
+print('CREATING TABLE')
 
 @app.before_first_request
 def create_table():
@@ -63,6 +65,9 @@ def create_table():
     Note. If API non-persistence required, data DB will need to be reset (API controls id statelessly)
     i.e. no db look up for max id value for restart.  A possible enhancement.
     """
+
+
+
     db.create_all()
 
 
